@@ -119,19 +119,28 @@ class AppOverlay {
     final double height = Get.height;
     final double width = Get.width;
     List<Widget> buttons = [];
+    List<Color> buttonColors = [Colors.white, kPrimaryColor];
+    List<Color> textColors = [Colors.black, Colors.white];
+    int index = 0;
     actions.forEach((text, onPressed) {
       buttons.add(CurvedButton(
           radius: 8,
           height: height * 0.05,
           width: (width * 0.65) / actions.length,
-          color: kPrimaryColor,
+          color: buttonColors[index],
           child: Text(text,
               textAlign: TextAlign.center,
-              style: Get.textTheme.caption!.copyWith(color: Colors.white)),
+              style: Get.textTheme.caption!.copyWith(color: textColors[index])),
           onPressed: () {
             Get.back();
             onPressed();
           }));
+
+      if (index >= actions.length - 1) {
+        index = 0;
+      } else {
+        index++;
+      }
     });
     Get.dialog(Material(
       elevation: 10,
@@ -146,7 +155,7 @@ class AppOverlay {
             ),
             alignment: Alignment.center,
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(12), color: Colors.white70),
+                borderRadius: BorderRadius.circular(12), color: Colors.white),
             child: Column(
               children: [
                 Row(

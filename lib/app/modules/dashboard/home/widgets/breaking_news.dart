@@ -6,27 +6,35 @@ class BreakingNews extends GetView<HomepageController> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-        width: Get.width,
-        child: SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: Obx(() {
-            return controller.posts.isEmpty
-                ? Column(
+      width: Get.width,
+      child: Obx(() {
+        return controller.posts.isEmpty
+            ? Center(
+                child: Column(
                   children: [
                     Image.asset(
-                        "assets/images/empty.jpg",
-                        fit: BoxFit.contain,
-                      ),
-                      const Text("In the beginning, there was nothing...")
+                      "assets/images/empty.jpg",
+                      height: 210,
+                      width: Get.width * 0.7,
+                      fit: BoxFit.contain,
+                    ),
+                    Text("In the beginning, there was nothing...",
+                        style: Get.textTheme.bodyText1),
+                    const SizedBox(
+                      height: 10,
+                    )
                   ],
-                )
-                : Row(
-                    children: controller.posts
-                        .map<BreakingNewsCard>(
-                            (blogpost) => BreakingNewsCard(blogpost))
-                        .toList(),
-                  );
-          }),
-        ));
+                ),
+              )
+            : SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: controller.posts
+                      .map<BreakingNewsCard>(
+                          (blogpost) => BreakingNewsCard(blogpost))
+                      .toList(),
+                ));
+      }),
+    );
   }
 }

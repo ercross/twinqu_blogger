@@ -88,7 +88,6 @@ class PlatformTextField extends StatelessWidget {
               inputFormatters: inputFormatters,
               validator: validator,
               keyboardType: inputType,
-              autovalidateMode: AutovalidateMode.onUserInteraction,
               onSaved: (input) {
                 if (input != null && input.isNotEmpty) {
                   onSaved(input.trim());
@@ -189,7 +188,6 @@ class _PlatformPasswordTextFieldState extends State<PlatformPasswordTextField> {
                 }
               },
               maxLines: 1,
-              autovalidateMode: AutovalidateMode.onUserInteraction,
               cursorColor: Colors.black,
               style: texts.bodyText2,
               obscureText: _isObscured,

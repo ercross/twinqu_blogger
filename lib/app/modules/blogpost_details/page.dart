@@ -1,19 +1,20 @@
-import 'package:blogger/app/global_widgets/overlays.dart';
-import 'package:blogger/app/routes/routes.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:modals/modals.dart';
 
-import '../../core/values/colors.dart';
 import '../../core/values/strings.dart';
 import '../../data/models/blogpost.dart';
 import '../../global_widgets/blank_page.dart';
 import '../../global_widgets/key_value_widgets_horizontal.dart';
 import '../../global_widgets/meta_data.dart';
+import '../../global_widgets/overlays.dart';
 import '../../global_widgets/platform_app_bar.dart';
 import '../../global_widgets/profile_avatar.dart';
+import '../../routes/routes.dart';
+import 'controller.dart';
 
 part 'widgets/blog_picture.dart';
 part 'widgets/bottom_widget.dart';
@@ -42,7 +43,7 @@ class BlogPostDetailsPage extends StatelessWidget {
                 backgroundColor: Colors.white,
                 foregroundColor: const Color(0xFF0A1330),
                 child: const Icon(Icons.arrow_back_ios_new_rounded, size: 18),
-                onPressed: () => Get.back()),
+                onPressed: () => Get.offNamed(Routes.home)),
             Text(
               details,
               style: Get.textTheme.button!
@@ -53,7 +54,7 @@ class BlogPostDetailsPage extends StatelessWidget {
                 backgroundColor: Colors.white,
                 foregroundColor: const Color(0xFF0A1330),
                 child: const Icon(Icons.keyboard_control_rounded, size: 18),
-                onPressed: () => _showOptions(context)),
+                onPressed: () => _showOptions(context, blogPost)),
           ],
         ),
         builder: (pageHeight, pageWidth) {
@@ -83,13 +84,16 @@ class BlogPostDetailsPage extends StatelessWidget {
         });
   }
 
-  void _showOptions(BuildContext context) {
+  void _showOptions(BuildContext context, BlogPost blogPost) {
     showModal(ModalEntry.positioned(context,
         tag: 'menuOptions',
         right: 19,
         top: 116,
         barrierDismissible: true,
         barrierColor: Colors.black38,
-        child: const MenuOptions(modalTag: 'menuOptions')));
+        child: MenuOptions(
+          modalTag: 'menuOptions',
+          blogPost: blogPost,
+        )));
   }
 }

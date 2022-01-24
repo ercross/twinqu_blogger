@@ -20,7 +20,7 @@ class Blogger extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const String entryRoute = Routes.login;
+    const String entryRoute = Routes.home;
 
     return Platform.isAndroid
         ? GetMaterialApp(

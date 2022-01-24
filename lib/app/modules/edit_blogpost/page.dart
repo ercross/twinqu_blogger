@@ -16,6 +16,9 @@ part 'widgets/document_picker.dart';
 part 'widgets/title_text_field.dart';
 
 class EditBlogPostPage extends StatelessWidget {
+
+  /// [EditBlogPostPage] expects an instance of [BlogPost]
+  /// from its [ModalRoute]
   const EditBlogPostPage({Key? key}) : super(key: key);
 
   @override

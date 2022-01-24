@@ -6,6 +6,7 @@ import 'package:blogger/app/global_widgets/meta_data.dart';
 import 'package:blogger/app/global_widgets/profile_avatar.dart';
 import 'package:blogger/app/modules/dashboard/home/controller.dart';
 import 'package:blogger/app/routes/routes.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:date_time_format/date_time_format.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +19,6 @@ import '../../../global_widgets/blank_page.dart';
 import '../../../global_widgets/buttons.dart';
 import '../../../global_widgets/key_value_widgets_horizontal.dart';
 import '../../../global_widgets/platform_app_bar.dart';
-import '../../../../sample_data.dart';
 
 part 'widgets/bottom_nav_bar.dart';
 part 'widgets/search_tools.dart';
@@ -26,12 +26,14 @@ part 'widgets/breaking_news_card.dart';
 part 'widgets/breaking_news.dart';
 part 'widgets/category_post_card.dart';
 part 'widgets/tab_indicator.dart';
+part 'widgets/category_view.dart';
 
 class Homepage extends StatelessWidget {
   const Homepage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    Get.find<HomepageController>().refresh();
     return BlankPage(
         floatingActionButton: FloatingActionButton(
           onPressed: () {
@@ -56,7 +58,6 @@ class Homepage extends StatelessWidget {
             ])),
         withSafeArea: true,
         builder: (pageHeight, pageWidth) {
-          final controller = Get.find<HomepageController>();
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -74,22 +75,10 @@ class Homepage extends StatelessWidget {
               ),
               const SizedBox(height: 18),
               const BreakingNews(),
-              const SizedBox(height: 40),
+              const SizedBox(height: 30),
               const PageTabIndicator(),
               const SizedBox(height: 23),
-              Expanded(child: Obx(() {
-                return controller.posts.isEmpty
-                    ? SizedBox(
-                        width: Get.width * 0.7,
-                        child: const Text(
-                            "Such Emptiness. Click the add button to create a blog post"))
-                    : ListView(
-                        children: controller.posts
-                            .map<CategoryPostCard>(
-                                (blogpost) => CategoryPostCard(blogpost))
-                            .toList(),
-                      );
-              }))
+              const Expanded(child: CategoryView())
             ],
           );
         });

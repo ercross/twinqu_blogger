@@ -28,11 +28,20 @@ class BreakingNewsCard extends StatelessWidget {
                 borderRadius: const BorderRadius.only(
                     topRight: Radius.circular(15),
                     topLeft: Radius.circular(15)),
-                child: Image.asset(
-                  blogpost.imageUrl,
+                child: CachedNetworkImage(
+                  imageUrl: blogpost.imageUrl,
                   height: 150,
                   width: double.infinity,
                   fit: BoxFit.cover,
+                  placeholder: (_, __) =>
+                      Container(
+                    padding: const EdgeInsets.symmetric(vertical: 50, horizontal: 50),
+                    height: 150,
+                    width: 150,
+                    child: const CircularProgressIndicator.adaptive(
+                      strokeWidth: 2,
+                    ),
+                  ),
                 )),
             const SizedBox(
               height: 14,

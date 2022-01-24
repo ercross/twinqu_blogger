@@ -56,14 +56,14 @@ class BlogPost extends Equatable {
   }
 
   factory BlogPost.fromJson(Map<String, dynamic> json) => BlogPost(
-    id: json["id"],
+      id: json["id"],
       title: json["title"],
       body: json["body"],
       created: DateTime.parse((json["created"])),
       category: BlogCategory.all,
       createdBy: "John Stones",
       creatorPicsUrl: json["creator_pics"],
-      imageUrl: json["image"]);
+      imageUrl: json["image_url"]);
 
   // 7
   Map<String, dynamic> toJson() => {
@@ -71,7 +71,7 @@ class BlogPost extends Equatable {
         "body": body,
         "created": created.toString(),
         "creator_pics": creatorPicsUrl,
-        "image": imageUrl
+        "image_url": imageUrl
       };
 
   @override

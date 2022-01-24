@@ -18,14 +18,12 @@ class BlogPicture extends StatelessWidget {
             bottom: 19,
             child: ClipRRect(
               borderRadius: BorderRadius.circular(15),
-              child: Image.network(
-                imageUrl,
+              child: CachedNetworkImage(
+                imageUrl: imageUrl,
                 fit: BoxFit.cover,
                 height: 195,
                 width: double.infinity,
-                errorBuilder: (context, error, stackTrace) =>
-                    const Icon(Icons.broken_image, color: kPrimaryColor),
-                loadingBuilder: (context, child, loadingProgress) => Column(
+                placeholder: (_, __) => Column(
                   children: [
                     const SizedBox(
                         height: 30,
@@ -33,6 +31,7 @@ class BlogPicture extends StatelessWidget {
                         child: CircularProgressIndicator.adaptive(
                           strokeWidth: 2,
                         )),
+                    const SizedBox(height: 10),
                     Text("Loading image...", style: Get.textTheme.subtitle1)
                   ],
                 ),

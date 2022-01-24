@@ -1,3 +1,4 @@
+import 'package:blogger/app/global_widgets/overlays.dart';
 import 'package:blogger/app/modules/auth/login/controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -19,6 +20,7 @@ class LoginPage extends GetView<LoginController> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    AppOverlay.context = context;
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: BlankPage(
@@ -35,23 +37,23 @@ class LoginPage extends GetView<LoginController> {
                       child: Text(login, style: theme.textTheme.headline3)),
                   const SizedBox(height: 61),
                   PlatformTextField(
-                      height: 51,
+                      height: 61,
                       validator: controller.validateEmail,
                       suffixIcon: const Icon(Icons.email_outlined),
                       width: double.infinity,
                       inputType: TextInputType.emailAddress,
                       onSaved: controller.onSavedEmail,
                       hint: email),
-                  const SizedBox(height: 16),
+                  const SizedBox(height: 20),
                   PlatformPasswordTextField(
-                    height: 51,
+                    height: 61,
                     validator: controller.validatePassword,
                     width: double.infinity,
                     onSaved: controller.onSavedPassword,
                   ),
-                  const SizedBox(height: 37),
+                  const SizedBox(height: 27),
                   const _Line(),
-                  const SizedBox(height: 32),
+                  const SizedBox(height: 28),
                   CurvedButton(
                       height: 51,
                       width: double.infinity,

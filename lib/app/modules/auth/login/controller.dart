@@ -15,6 +15,7 @@ class LoginController extends GetxController {
       AppOverlay().showInfoDialog(
           title: "Note",
           onPressed: () {
+            Get.back();
             final overlay = AppOverlay.loading();
             Future.delayed(const Duration(seconds: 4)).then((_) {
               AppOverlay.dismiss(overlay);
@@ -23,6 +24,7 @@ class LoginController extends GetxController {
                   "Sign in successful. Welcome back Borris Johnson");
             });
           },
+          buttonText: "Okay, login",
           content:
               "Please note that this authentication is just a mock of client-server communication");
     }

@@ -15,23 +15,38 @@ class CategoryPostCard extends StatelessWidget {
         child: KeyValueWidgetsHorizontal(
             title: ClipRRect(
                 borderRadius: BorderRadius.circular(10),
-                child: Image.asset(
-                  blogpost.imageUrl,
-                  height: 70,
-                  width: 77,
-                )),
+                child: CachedNetworkImage(
+                    imageUrl: blogpost.imageUrl,
+                    placeholder: (_, __) => Container(
+                          padding: const EdgeInsets.all(8),
+                          height: 50,
+                          width: 50,
+                          child: const CircularProgressIndicator.adaptive(
+                            strokeWidth: 2,
+                          ),
+                        ),
+                    height: 70,
+                    width: 77,
+                    fit: BoxFit.cover)),
             spaceBetweenAlternative: 10,
             value: Expanded(
                 child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(blogpost.title,
-                    style: Get.textTheme.caption!
-                        .copyWith(fontWeight: FontWeight.w600)),
-                BlogPostMetaData(
-                  comments: blogpost.comments,
-                  created: blogpost.created,
-                  likes: blogpost.likes,
+                Padding(
+                  padding: const EdgeInsets.only(top: 5.0),
+                  child: Text(blogpost.title,
+                      style: Get.textTheme.caption!
+                          .copyWith(fontWeight: FontWeight.w600)),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 5.0),
+                  child: BlogPostMetaData(
+                    comments: blogpost.comments,
+                    created: blogpost.created,
+                    likes: blogpost.likes,
+                  ),
                 )
               ],
             ))),
