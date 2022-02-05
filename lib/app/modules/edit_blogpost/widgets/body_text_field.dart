@@ -1,15 +1,17 @@
 part of '../page.dart';
 
-class BodyTextField extends GetView<CreateBlogPostController> {
-  const BodyTextField({Key? key}) : super(key: key);
+class BodyTextField extends GetView<EditBlogPostController> {
+  final String initial;
+  const BodyTextField(this.initial, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Platform.isIOS
         ? CupertinoTextFormFieldRow(
-            validator: controller.titleValidator,
+            validator: controller.bodyValidator,
             showCursor: true,
             maxLines: 40,
+            initialValue: initial,
             onSaved: controller.onSavedBody,
             cursorColor: kPrimaryColor,
             padding: const EdgeInsets.only(top: 10),
@@ -19,7 +21,8 @@ class BodyTextField extends GetView<CreateBlogPostController> {
             validator: controller.bodyValidator,
             showCursor: true,
             maxLines: 40,
-            onSaved: controller.onSavedTitle,
+            initialValue: initial,
+            onSaved: controller.onSavedBody,
             cursorColor: kPrimaryColor,
             style: Get.textTheme.caption,
             decoration: InputDecoration(

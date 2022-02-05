@@ -1,3 +1,4 @@
+import 'package:blogger/app/modules/dashboard/home/controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -23,6 +24,7 @@ class DetailsPageController extends GetxController {
           "YES": () {
             final overlay = AppOverlay.loading();
             repo.deletePostByID(id).then((value) {
+              Get.find<HomepageController>().refreshList();
               AppOverlay.dismiss(overlay);
               AppOverlay().snackbarWithoutContext(
                   "Your blogpost has been deleted successfully");

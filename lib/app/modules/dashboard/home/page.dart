@@ -28,12 +28,11 @@ part 'widgets/category_post_card.dart';
 part 'widgets/tab_indicator.dart';
 part 'widgets/category_view.dart';
 
-class Homepage extends StatelessWidget {
+class Homepage extends GetView<HomepageController> {
   const Homepage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    Get.find<HomepageController>().refresh();
     return BlankPage(
         floatingActionButton: FloatingActionButton(
           onPressed: () {
@@ -65,7 +64,7 @@ class Homepage extends StatelessWidget {
                 height: 33,
               ),
               const SearchTools(),
-              const SizedBox(height: 30),
+              const SizedBox(height: 25),
               Padding(
                 padding: const EdgeInsets.only(left: 24.0),
                 child: Text(
@@ -75,7 +74,7 @@ class Homepage extends StatelessWidget {
               ),
               const SizedBox(height: 18),
               const BreakingNews(),
-              const SizedBox(height: 30),
+              const SizedBox(height: 25),
               const PageTabIndicator(),
               const SizedBox(height: 23),
               const Expanded(child: CategoryView())

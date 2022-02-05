@@ -19,3 +19,4 @@ const String save = "Save";
 const String createPost = "Create post";
 const String title = "Title";
 const String body = "Body";
+const String update = "Update";

@@ -11,8 +11,6 @@ class _PageTabIndicatorState extends State<PageTabIndicator>
     with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
-    
-
     return TabBar(
       controller:
           TabController(length: BlogCategory.values.length, vsync: this),
@@ -23,18 +21,14 @@ class _PageTabIndicatorState extends State<PageTabIndicator>
           .map<Tab>((category) =>
               Tab(height: 20, text: category.name.toSentenceCase()))
           .toList(),
-      labelPadding: kTabLabelPadding.copyWith(top: 8),
+      labelPadding: kTabLabelPadding.copyWith(top: 16),
       labelColor: kPrimaryColor,
-      
       unselectedLabelColor: const Color(0xFF939393),
       indicatorSize: TabBarIndicatorSize.label,
-      indicator: MaterialIndicator(
+      indicator: DotIndicator(
         color: kPrimaryColor,
-        horizontalPadding: 6,
-        bottomLeftRadius: 5,
-        height: 5,
-        bottomRightRadius: 5,
-        tabPosition: TabPosition.top,
+        distanceFromCenter: -16,
+        radius: 3,
         paintingStyle: PaintingStyle.fill,
       ),
     );

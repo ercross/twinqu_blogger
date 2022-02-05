@@ -53,8 +53,8 @@ class BlogPostRepository {
     }
   }
 
-  void updatePost(BlogPost blogPost) async {
-    await _collection.doc(blogPost.id).update(blogPost.toJson());
+  Future updatePost(Map<String, dynamic> inputs, String id) async {
+    return await _collection.doc(id).update(inputs);
   }
 
   Future<void> deletePostByID(String? id) async {

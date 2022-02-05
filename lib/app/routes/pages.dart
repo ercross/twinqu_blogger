@@ -56,7 +56,8 @@ abstract class AppPages {
         transition: Transition.leftToRightWithFade),
     GetPage(
         name: Routes.editBlogpost,
-        binding: BindingsBuilder.put(() => EditBlogPostController()),
+        binding: BindingsBuilder.put(
+            () => EditBlogPostController(BlogPostRepository(ImageService()))),
         page: () => const EditBlogPostPage(),
         curve: _curve,
         transitionDuration: const Duration(milliseconds: _duration),

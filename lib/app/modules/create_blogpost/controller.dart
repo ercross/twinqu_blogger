@@ -48,7 +48,7 @@ class CreateBlogPostController extends GetxController {
   }
 
   void onSavedImagePicker(String? input) {
-    _inputs.addIf(input != null, "image", input);
+    _inputs.addIf(input != null, "image_url", input);
   }
 
   /// check [onImageSelected] for initialization

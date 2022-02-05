@@ -44,7 +44,7 @@ class _CustomImagePickerState extends State<CustomImagePicker> {
                         children: [
                           if (_path.isNotEmpty)
                             Image.file(File(_pickedFile!.path),
-                                fit: BoxFit.fill,
+                                fit: BoxFit.cover,
                                 height: 132,
                                 width: double.infinity),
                           Align(alignment: Alignment.center, child: camera)

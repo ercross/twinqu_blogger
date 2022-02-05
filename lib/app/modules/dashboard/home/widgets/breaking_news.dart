@@ -7,7 +7,7 @@ class BreakingNews extends GetView<HomepageController> {
   Widget build(BuildContext context) {
     return SizedBox(
       width: Get.width,
-      child: Obx(() {
+      child: GetBuilder<HomepageController>(builder: (_)  {
         return controller.posts.isEmpty
             ? Center(
                 child: Column(

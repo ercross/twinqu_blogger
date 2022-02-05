@@ -1,7 +1,8 @@
 part of '../page.dart';
 
-class TitleTextField extends GetView<CreateBlogPostController> {
-  const TitleTextField({Key? key}) : super(key: key);
+class TitleTextField extends GetView<EditBlogPostController> {
+  final String initial;
+  const TitleTextField(this.initial, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -12,6 +13,7 @@ class TitleTextField extends GetView<CreateBlogPostController> {
           ? CupertinoTextFormFieldRow(
               validator: controller.titleValidator,
               showCursor: true,
+              initialValue: initial,
               onSaved: controller.onSavedTitle,
               decoration: const BoxDecoration(
                   border: Border(
@@ -25,6 +27,7 @@ class TitleTextField extends GetView<CreateBlogPostController> {
               showCursor: true,
               onSaved: controller.onSavedTitle,
               cursorColor: kPrimaryColor,
+              initialValue: "     $initial",
               style: Get.textTheme.bodyText2,
               decoration: InputDecoration(
                 focusedBorder: const UnderlineInputBorder(
